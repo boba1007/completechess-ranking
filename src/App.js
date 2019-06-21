@@ -9,7 +9,6 @@ class App extends React.Component {
         super(props);
         this.state = {
             data: null,
-            headRows: ["USCF ID", "Name", "Grade", "Gender", "Last Event", ""],
             columns: [
                 {title: 'USCF ID', field: 'USCF ID', editable: 'never'},
                 {
@@ -89,7 +88,7 @@ class App extends React.Component {
 
     createTables() {
         let {players} = this.state;
-        if (players) {
+        if (players && players.length>0) {
             let topFemales, topK12, topK9, topK5;
             topFemales = players.filter(player => player["Gender"] === "Female");
             topK12 = players.filter(player => player["Grade"] < 13 && player["Grade"] > 0);
