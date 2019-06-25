@@ -16,7 +16,12 @@ class App extends React.Component {
                     field: 'Name',
                     render: rowData => <a href={`http://www.uschess.org/msa/MbrDtlMain.php?${rowData["USCF ID"]}`} target="_blank">{rowData["Name"]}</a>,
                 },
-                {title: 'Grade', field: 'Grade', type: 'numeric'},
+                {
+                    title: 'Grade',
+                    field: 'Grade',
+                    type: 'numeric',
+                    render: rowData => <p>{rowData["Grade"]==99 ? 'N/A' : rowData["Grade"]}</p>,
+                },
                 {title: 'Gender', field: 'Gender'},
                 {title: 'Last Event', field: 'Last Event'},
                 {title: 'Regular Rating', field: 'Regular Rating', type: 'numeric', defaultSort: 'desc'},
