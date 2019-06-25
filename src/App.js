@@ -90,7 +90,7 @@ class App extends React.Component {
         let {players} = this.state;
         if (players && players.length>0) {
             let topFemales, topK12, topK9, topK5;
-            topFemales = players.filter(player => player["Gender"] === "Female");
+            topFemales = players.filter(player => player["Gender"] && player["Gender"].trim() == "Female");
             topK12 = players.filter(player => player["Grade"] < 13 && player["Grade"] > 0);
             topK9 = players.filter(player => player["Grade"] < 10 && player["Grade"] > 0);
             topK5 = players.filter(player => player["Grade"] < 6 && player["Grade"] > 0);
