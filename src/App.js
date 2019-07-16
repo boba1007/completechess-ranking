@@ -20,7 +20,7 @@ class App extends React.Component {
                     title: 'Grade',
                     field: 'Grade',
                     type: 'numeric',
-                    render: rowData => <p>{rowData["Grade"]==99 ? 'N/A' : rowData["Grade"]}</p>,
+                    render: rowData => <p>{rowData["Grade"]===99 ? 'N/A' : rowData["Grade"]}</p>,
                 },
                 {title: 'Gender', field: 'Gender'},
                 {title: 'Last Event', field: 'Last Event'},
@@ -94,17 +94,26 @@ class App extends React.Component {
     createTables() {
         let {players} = this.state;
         if (players && players.length>0) {
-            let topFemales, topK12, topK9, topK5;
-            topFemales = players.filter(player => player["Gender"] && player["Gender"].trim() == "Female");
-            topK12 = players.filter(player => player["Grade"] < 13 && player["Grade"] > 0);
-            topK9 = players.filter(player => player["Grade"] < 10 && player["Grade"] > 0);
-            topK5 = players.filter(player => player["Grade"] < 6 && player["Grade"] > 0);
+            let topFemales, topK12, topK8, topGrade5, topGrade4, topGrade3, topGrade2, topGrade1;
+            topFemales = players.filter(player => player["Gender"] && player["Gender"].trim() === "Female");
+            topK12 = players.filter(player => player["Grade"] < 13 && player["Grade"] > 8);
+            topK8 = players.filter(player => player["Grade"] < 9 && player["Grade"] > 5);
+            topGrade5 = players.filter(player => player["Grade"] === 5);
+            topGrade4 = players.filter(player => player["Grade"] === 4);
+            topGrade3 = players.filter(player => player["Grade"] === 3);
+            topGrade2 = players.filter(player => player["Grade"] === 2);
+            topGrade1 = players.filter(player => player["Grade"] < 2);
+
             this.setState({
                 generated: true,
                 topFemales: topFemales,
                 topK12: topK12,
-                topK9: topK9,
-                topK5: topK5,
+                topK8: topK8,
+                topGrade5: topGrade5,
+                topGrade4: topGrade4,
+                topGrade3: topGrade3,
+                topGrade2: topGrade2,
+                topGrade1: topGrade1
             })
         }
     }
@@ -127,7 +136,7 @@ class App extends React.Component {
     }
 
     render() {
-        let {columns, players, generated, topFemales, topK12, topK9, topK5} = this.state;
+        let {columns, players, generated, topFemales, topK12, topK8, topGrade5, topGrade4, topGrade3, topGrade2, topGrade1} = this.state;
         const editTable =
             <Paper>
                 <MaterialTable
@@ -178,7 +187,7 @@ class App extends React.Component {
                     }}
                 />
                 <MaterialTable
-                    title="Top Females"
+                    title="Top 10 Girls"
                     columns={columns}
                     data={topFemales}
                     options={{
@@ -187,7 +196,7 @@ class App extends React.Component {
                     }}
                 />
                 <MaterialTable
-                    title="Top K-12"
+                    title="Top Grades 9-12"
                     columns={columns}
                     data={topK12}
                     options={{
@@ -196,18 +205,54 @@ class App extends React.Component {
                     }}
                 />
                 <MaterialTable
-                    title="Top K-9"
+                    title="Top Grades 6-8"
                     columns={columns}
-                    data={topK9}
+                    data={topK8}
                     options={{
                         search: false,
                         pageSize: 10
                     }}
                 />
                 <MaterialTable
-                    title="Top K-5"
+                    title="Top Grade 5"
                     columns={columns}
-                    data={topK5}
+                    data={topGrade5}
+                    options={{
+                        search: false,
+                        pageSize: 10
+                    }}
+                />
+                <MaterialTable
+                    title="Top Grade 4"
+                    columns={columns}
+                    data={topGrade4}
+                    options={{
+                        search: false,
+                        pageSize: 10
+                    }}
+                />
+                <MaterialTable
+                    title="Top Grade 3"
+                    columns={columns}
+                    data={topGrade3}
+                    options={{
+                        search: false,
+                        pageSize: 10
+                    }}
+                />
+                <MaterialTable
+                    title="Top Grade 2"
+                    columns={columns}
+                    data={topGrade2}
+                    options={{
+                        search: false,
+                        pageSize: 10
+                    }}
+                />
+                <MaterialTable
+                    title="Top K-1"
+                    columns={columns}
+                    data={topGrade1}
                     options={{
                         search: false,
                         pageSize: 10
