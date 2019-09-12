@@ -1,12 +1,24 @@
 {
   "name": "cchess-ranking",
   "version": "1.0.0",
-  "scripts": {
-    "start": "npm run build-client && node server",
-    "start-local": "npm run build-client && PORT=8080 node server",
-    "build-client": "cd client && npm run build && cd .."
-  },
+  "description": "",
+  "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "concurrently": "^4.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boba1007/ccranking.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boba1007/ccranking/issues"
+  },
+  "homepage": "https://github.com/boba1007/ccranking#readme"
 }

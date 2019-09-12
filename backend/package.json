@@ -1,0 +1,19 @@
+{
+  "name": "cchess-ranking",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server",
+    "start-local": "npm run build-client && PORT=8080 node server",
+    "build-client": "cd client && npm run build && cd .."
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mongoose": "^5.7.0",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0"
+  }
+}
